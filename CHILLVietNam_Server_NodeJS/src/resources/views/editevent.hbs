@@ -1,0 +1,134 @@
+<style>
+    .datepicker-block {
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem;
+        background-color: #fff;
+        background-clip: padding-box;
+        transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        border: 1px solid #ced4da;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        line-height: 1.5;
+        font-size: 1rem;
+    }
+</style>
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Thêm mới sự kiện</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <!-- start form for validation -->
+        <form id="editEventForm" method="POST" action="/events/{{event._id}}?_method=PUT" enctype="multipart/form-data">
+
+            <label for="title">Tiêu đề* :</label>
+            <input type="text" id="title" value="{{event.title}}" class="form-control mb-10" name="title" required />
+
+            <label for="content">Nội dung:</label>
+            <textarea rows="15" id="content" required="required" class="form-control mb-10"
+                name="content">{{event.content}}</textarea>
+
+            <label for="address">Địa chỉ* :</label>
+            <input type="text" id="address" value="{{event.address}}" class=" form-control mb-10" name="address"
+                required />
+
+
+            <div style="display: flex;width: 100%">
+                <div style="width: 20%">
+                    <label for="datepicker">Ngày*:</label>
+                    <div class="mb-10 datepicker-block">
+                        <i style="padding: 0 10px 0 8px" class="fa fa-calendar" aria-hidden="true"></i>
+                        <input style="width: 100% ;border: none;border-left: 1px solid #73879C;padding-left: 10px"
+                            type="text" class="has-feedback-left" id="datepicker" value="{{event.date}}" name="date"
+                            placeholder="">
+                    </div>
+                </div>
+                <div style="width: 20%; margin-left: 20px">
+                    <label for="hours">Giờ :</label>
+                    <input type="text" id="hours" class="form-control mb-10" value="{{event.time}}" name="hours"
+                        placeholder="HH:mm" />
+                </div>
+            </div>
+
+            <label for="title">Bar* :</label>
+            <select class="form-control mb-10" style="width: 20%" id="barID">
+                <option value="{{event.barID}}">{{selectedBar}}</option>
+                {{#each bars}}
+                <option value={{this._id}}>{{this.title}}</option>
+                {{/each}}
+            </select>
+
+            <label for="price">Giá tiền:</label>
+            <input type="text" style="width: 20%" value="{{event.price}}" id="price" class="form-control mb-10"
+                name="price" required />
+
+            <br />
+            <br />
+            <div onclick="importInput()"
+                style="width: fit-content;width: --webkit-fit-content;border: none;background-color: #842991; color: white; padding: 8px 20px; border-radius: 4px; cursor: pointer">
+                Lưu
+                lại</div>
+
+        </form>
+        <!-- end form for validations -->
+
+    </div>
+</div>
+
+
+<script>
+    $.fn.singleDatePicker = function () {
+        $(this).on("apply.daterangepicker", function (e, picker) {
+            picker.element.val(picker.startDate.format('DD/MM/YYYY'));
+        });
+        return $(this).daterangepicker({
+            singleDatePicker: true,
+            autoUpdateInput: false,
+            singleClasses: "picker_1",
+            locale: {
+                format: 'DD/MM/YYYY',
+                daysOfWeek: [
+                    "CN", "T2", "T3", "T4", "T5", "T6", "T7"
+                ],
+                monthNames: [
+                    "Tháng 1,", "Tháng 2,", "Tháng 3,", "Tháng 4,", "Tháng 5,", "Tháng 6,",
+                    "Tháng 7,", "Tháng 8,", "Tháng 9,", "Tháng 10,", "Tháng 11,", "Tháng 12,"
+                ],
+                firstDay: 1
+            }
+        });
+    };
+    document.addEventListener('DOMContentLoaded', function () {
+        $('#datepicker').val(moment(new Date()).format("DD/MM/YYYY"))
+        $('#datepicker').singleDatePicker();
+    }, false)
+    function importInput() {
+        var form = document.querySelector("#editEventForm");
+        var title = document.querySelector("#title").value;
+        var content = document.querySelector("#content").value;
+        var address = document.querySelector("#address").value;
+        var date = document.querySelector("#datepicker").value;
+        var hours = document.querySelector("#hours").value;
+        var bar = document.querySelector("#barID").value;
+        var price = document.querySelector("#price").value;
+
+        if (title == "" || content == "" || address == "" || date == "" || hours == "" || bar == "" || price == "") {
+            alert("Vui lòng điền đầy đủ thông tin")
+        }
+        else {
+            var hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = "barID";
+            hiddenInput.value = bar;
+            form.appendChild(hiddenInput);
+
+            form.submit()
+        }
+
+    };
+
+
+
+</script>

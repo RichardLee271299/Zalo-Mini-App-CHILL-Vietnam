@@ -1,0 +1,74 @@
+<div id="login-container">
+
+    <a class="logo"></a>
+
+    <div name="loginform" id="loginform" method="post">
+        <p class="input-block">
+            <i style="color:white;font-size: 26px" class="fa fa-user" aria-hidden="true"></i>
+            <input type="text" name="username" id="user_login" class="input" value="" size="20" autocapitalize="off"
+                autocomplete="on" required="required" placeholder="Username">
+        </p>
+
+        <p class="input-block">
+            <i style="color:white;font-size: 26px" class="fa fa-lock" aria-hidden="true"></i>
+            <input type="password" name="password" id="user_pass" class="input password-input" value="" size="20"
+                autocomplete="on" spellcheck="false" required="required" placeholder="Password">s
+        </p>
+        {{!-- <p class="forgetmenot"><input name="rememberme" type="checkbox" id="rememberme" value="forever">
+            <label for="rememberme">Remember Me</label>
+        </p> --}}
+        <p style="font-size: 14px; color: red; margin: 1.5em 0 0 0;text-align: center" id="message"></p>
+        <p class="submit">
+            <input onclick="doLogin()" name="login-btn" id="login-btn" value="Log In">
+            <input type="hidden" name="testcookie" value="1">
+        </p>
+    </div>
+
+
+</div>
+
+<script>
+
+
+    document.addEventListener('keydown', function (event) {
+        //Check enter to click button
+        if (event.keyCode === 13 || event.key === 'Enter') {
+            doLogin();
+        }
+    });
+
+    // Lưu câu trả lời
+    function doLogin() {
+
+        var username = document.querySelector('#user_login').value;
+        var password = document.querySelector('#user_pass').value;
+        if (username == '' || password == '') {
+            document.querySelector('#message').innerText = 'Vui lòng nhập đầy đủ thông tin';
+            return;
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '/login', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+
+        xhr.timeout = 30000;
+        xhr.ontimeout = function () {
+            alert("Không kết nối được với máy chủ, vui lòng thử lại!")
+        }
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                const responseData = JSON.parse(xhr.responseText)
+                if (responseData.status == "ER") {
+                    document.querySelector('#message').innerText = responseData.message;
+                    return;
+                }
+                else {
+                    window.location = "/"
+                }
+            }
+        }
+
+        var data = `username=${username}&password=${password}`
+        xhr.send(data);
+    }
+</script>

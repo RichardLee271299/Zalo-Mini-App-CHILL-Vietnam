@@ -1,0 +1,45 @@
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Thêm mới bài viết</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <!-- start form for validation -->
+        <form method="POST" action="/posts/store" enctype="multipart/form-data">
+
+            <label for="title">Tiêu đề* :</label>
+            <input type="text" id="title" class="form-control mb-10" name="title" required />
+
+            <label for="content">Nội dung:</label>
+            <textarea rows="15" id="content" required="required" class="form-control mb-10" name="content"></textarea>
+
+            <label for="address">Địa chỉ* :</label>
+            <input type="text" id="address" class="form-control mb-10" name="address" required />
+
+            <label for="price">Giá tiền:</label>
+            <input type="text" id="price" class="form-control mb-10" name="price" required />
+
+            <div style="margin: 20px 0 10px 0;">
+                <label>
+                    <input type="checkbox" id="chkFeatured" name="chkfeatured" class="js-switch" /> <span
+                        style="margin-left: 8px">Bài
+                        viết
+                        nổi
+                        bật</span>
+                </label>
+            </div>
+
+            <label for="thumb">Ảnh đại diện :</label> <br />
+            <input type="file" class="mb-10" id="thumb" name="thumb" required />
+            <br />
+            <br />
+            <button type="submit"
+                style="border: none;background-color: #842991; color: white; padding: 8px 20px; border-radius: 4px; cursor: pointer">Lưu
+                lại</button>
+
+        </form>
+        <!-- end form for validations -->
+
+    </div>
+</div>

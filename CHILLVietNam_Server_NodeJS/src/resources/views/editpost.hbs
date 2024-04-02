@@ -1,0 +1,59 @@
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Chỉnh sửa bài viết</h2>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+        <!-- start form for validation -->
+        <form method="POST" action="/posts/{{post._id}}?_method=PUT" enctype="multipart/form-data">
+
+            <label for="title">Tiêu đề* :</label>
+            <input rows="15" type="text" id="title" value="{{post.title}}" class="form-control mb-10" name="title"
+                required />
+
+            <label for="content">Nội dung:</label>
+            <textarea rows="15" id="content" required="required" class="form-control mb-10"
+                name="content">{{post.content}}</textarea>
+
+            <label for="address">Địa chỉ* :</label>
+            <input type="text" id="address" value="{{post.address}}" class="form-control mb-10" name="address"
+                required />
+
+            <label for="price">Giá tiền:</label>
+            <input type="text" id="price" class="form-control mb-10" value="{{post.price}}" name="price" required />
+
+            {{!-- <label for="thumb">Ảnh đại diện :</label> <br /> --}}
+            {{!-- <input type="file" class="mb-10" id="thumb" name="thumb" required /> --}}
+            {{#if post.isFeatured}}
+            <div style="margin: 20px 0 10px 0;">
+                <label>
+                    <input type="checkbox" id="chkFeatured" name="chkfeatured" checked class="js-switch" /> <span
+                        style="margin-left: 8px">Bài
+                        viết
+                        nổi
+                        bật</span>
+                </label>
+            </div>
+            {{else}}
+            <div style="margin: 20px 0 10px 0;">
+                <label>
+                    <input type="checkbox" id="chkFeatured" name="chkfeatured" class="js-switch" /> <span
+                        style="margin-left: 8px">Bài
+                        viết
+                        nổi
+                        bật</span>
+                </label>
+            </div>
+            {{/if}}
+
+            <br />
+            <button type="submit"
+                style="border: none;background-color: #842991; color: white; padding: 8px 20px; border-radius: 4px; cursor: pointer">Lưu
+                lại</button>
+
+        </form>
+        <!-- end form for validations -->
+
+    </div>
+</div>

@@ -1,0 +1,122 @@
+body
+{
+    background-image: url("/admin/build/images/background-login.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+#login-container
+{
+    position: relative;
+    top: 45%;
+    width: 80%;
+    max-width: 350px;
+    margin: 0 auto auto;
+    padding: 33px 26px;
+    transform: translateY(-50%);
+    background: rgb(255, 255, 255);
+    background: linear-gradient(165deg, rgba(255, 255, 255, 0.8) 5%, rgba(0, 0, 0, 0.1) 55%);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(1px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-bottom: none;
+    border-right: none;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+.logo
+{
+    width: 100%;
+    margin: 0 auto 10px;
+    cursor: default;
+    pointer-events: none;
+    background-image: url('/admin/build/images/chill-vietnam-logo.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    height: 84px;
+    display: block;
+}
+#login-container form
+{
+    margin-top: 0;
+    margin-left: 0;
+    padding: 0 24px 20px 24px !important;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    font-weight: 400;
+    overflow: hidden;
+    display: block;
+}
+#login-container .input, input[type=text]{
+    font-size: 16px;
+    height: 48px;
+    padding-left: 30px;
+    color: greenyellow;
+    border-radius: 0;
+    background: transparent;
+    line-height: 1.33333333;
+    width: 100%;
+    box-shadow: 0 0 0 transparent;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: greenyellow;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+}
+::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white;
+  }
+  
+  ::-ms-input-placeholder { /* Microsoft Edge */
+   color: white;
+  }
+
+#login-btn
+{
+    line-height: 20px;
+    height: auto;
+    padding: 12px 60px;
+    text-transform: uppercase;
+    background-image: linear-gradient(to right, #FF4E50 0%, #F9D423 50%, #FF4E50 100%);
+    text-align: center;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 3px #eee;
+    border: none;
+    border-radius: 10px;
+    display: block;
+    min-height: 32px;
+    vertical-align: baseline;
+    text-decoration: none;
+    text-shadow: none;
+    margin: 2em auto 0 auto;
+    cursor: pointer;
+}
+.input-block
+{
+    display: flex;
+    border-width: 0 0 1px 0;
+    border-color: white;
+    border-style: solid;
+    align-items: baseline;
+    padding-top: 10px;
+}

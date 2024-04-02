@@ -1,0 +1,67 @@
+<!-- page content -->
+<div class="">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Danh sách bài viết</h2>
+                    <a href="/posts/add"
+                        style="background-color: #842991; color: white; padding: 8px 10px; border-radius: 4px"
+                        class="panel_toolbox">Thêm
+                        mới</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+
+                    <div class="row">
+
+
+                        {{#each posts}}
+                        <div class="col-md-55">
+                            <div class="thumbnail">
+                                <div class="image view view-first">
+                                    <img style="width: 100%; display: block; height: 100%; object-fit: cover"
+                                        src="/uploads/{{this.thumb}}" alt="image" />
+                                    <div class="mask">
+                                        <div class="tools tools-bottom">
+                                            <a href="/posts/{{this._id}}/edit"><i class=" fa fa-pencil"></i></a>
+                                            <a style="cursor: pointer;"
+                                                onclick="handleDelete('{{this.title}}', '{{this._id}}')"><i
+                                                    class="fa fa-times"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="caption">
+                                    <p>{{this.title}}</p>
+                                    <p>{{this.price}}</p>
+                                    <p style="color:#842991">
+                                        {{#if this.isFeatured}}
+                                        <i style="color: #842991;" class="fa fa-star" aria-hidden="true"></i> Bài
+                                        viết nổi bật
+                                        {{/if}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+
+    <form id="delete-form" method="POST" action="">
+
+    </form>
+    <script>
+        function handleDelete(title, id) {
+            if (confirm(`Bạn đang yêu cầu xóa bài viết: ${title}. Việc này không thể khôi phục lại. Bạn chắc chắn muốn thực hiện?`) == true) {
+                const deleteForm = document.querySelector('#delete-form')
+                deleteForm.action = `/posts/${id}/remove?_method=delete`
+                deleteForm.submit()
+            }
+        }
+    </script>

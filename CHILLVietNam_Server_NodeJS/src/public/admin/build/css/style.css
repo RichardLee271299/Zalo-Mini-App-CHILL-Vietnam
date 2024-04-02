@@ -1,0 +1,17 @@
+.dz-default.dz-message
+{
+    margin: 2em auto;
+    text-align: center;
+}
+.mb-10
+{
+    margin-bottom: 10px;
+}
+.caption p
+{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
