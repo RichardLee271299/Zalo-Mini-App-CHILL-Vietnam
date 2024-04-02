@@ -1,0 +1,28 @@
+{
+  "app": {
+    "title": "Chill VietNam",
+    "headerTitle": "Chill VietNam",
+    "headerColor": "#842991",
+    "textColor": {
+      "light": "white",
+      "dark": "white"
+    },
+    "textAlign": "left",
+    "statusBarColor": {
+      "light": "#ffffff",
+      "dark": "#ffffff"
+    },
+    "leftButton": "none",
+    "statusBar": "normal",
+    "actionBarHidden": true,
+    "hideAndroidBottomNavigationBar": true,
+    "hideIOSSafeAreaBottom": true,
+    "selfControlLoading": false
+  },
+  "debug": false,
+  "pages": [],
+  "listCSS": [],
+  "listSyncJS": [],
+  "listAsyncJS": [],
+  "template": {}
+}
